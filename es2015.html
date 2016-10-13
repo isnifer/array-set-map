@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="node_modules/shower-ribbon/styles/screen-16x10.css">
+  <link rel="stylesheet" href="node_modules/shower-ribbon/styles/screen-4x3.css">
   <link rel="stylesheet" href="css/prism.css">
   <link rel="stylesheet" href="css/prism-fix.css">
   <link rel="stylesheet" href="css/netology.css">
@@ -34,6 +34,9 @@
     </ul>
   </section>
 
+  <section class="slide chapter">
+    <h2>Предисловие</h2>
+  </section>
   <section class="slide" id="intro">
     <h2>Что такое Node.js</h2>
     <ul>
@@ -44,7 +47,6 @@
       <li>Вместо многопоточности представляет собой событийно-ориентированную систему.</li>
     </ul>
   </section>
-
   <section class="slide" id="install-win">
     <h2>Установка Node.js</h2>
     <ol>
@@ -55,7 +57,6 @@
       <li>Под Win и OSX следуйте по шагам установщика.</li>
     </ol>
   </section>
-
   <section class="slide" id="first-run">
     <h2>Запуск Node.js</h2>
     <ul>
@@ -65,7 +66,6 @@
       <li><code>node test.js</code> — выполнение кода из файла <code>test.js</code> расположенного в текущей папке.</li>
     </ul>
   </section>
-
   <section class="slide" id="editor">
     <h2>Выбор редактора</h2>
     <figure>
@@ -75,7 +75,6 @@
       </figcaption>
     </figure>
   </section>
-
   <section class="slide" id="git">
     <h2>Рекомендую использовать <a href="https://git-scm.com/">git</a> для контроля версий кода</h2>
     <ul>
@@ -86,11 +85,14 @@
     </ul>
   </section>
 
+  <section class="slide chapter">
+    <h2>План занятия</h2>
+  </section>
   <section class="slide" id="roadmap">
     <h2>План занятия</h2>
     <ol class="double">
       <li><a href="#var"><code>var</code> и его грабли</a></li>
-      <li><a href="#let">блочные переменные с <code>let</code> </a></li>
+      <li><a href="#let">блочные переменные с <code>let</code></a></li>
       <li><a href="#const">константы с <code>const</code></a></li>
       <li><a href="#arrow-func">стрелочные функции</a></li>
       <li><a href="#default-args">аргументы функции по умолчанию</a></li>
@@ -104,7 +106,10 @@
     </ol>
   </section>
 
-  <section class="slide" id="var">
+  <section class="slide chapter" id="var">
+    <h2><code>var</code> и его грабли</a></h2>
+  </section>
+  <section class="slide">
     <h2>Область видимости <code>var</code></h2>
     <p>Чему будет равна переменная <code>name</code>?</p>
     <pre>
@@ -145,7 +150,7 @@
   </section>
   <section class="slide">
     <h2>Переменная доступна за пределеми блока в котором определена</h2>
-    <p>Так как область видимости переменной объявленная через <code>var</code> функция, создание и обращение происходит в одной области видимости.</p>
+    <p>Так как область видимости переменной, объявленной через <code>var</code>, функция, создание и обращение происходит в одной области видимости.</p>
     <pre>
       <code class="language-javascript line-numbers">
         if (true) {
@@ -234,6 +239,7 @@
         }
       </code>
     </pre>
+    <p>Чтобы зафиксировать значение переменной, поместим его в отдельную область видимости, которая будет уничтожена при переходе к следующей итерации.</p>
   </section>
   <section class="slide">
     <h2>Вариант ES2015: переменная с блочной областью видимости</h2>
@@ -259,7 +265,10 @@
     </ul>
   </section>
 
-  <section class="slide" id="let">
+  <section class="slide chapter" id="let">
+    <h2>Блочные переменные с <code>let</code></h2>
+  </section>
+  <section class="slide">
     <h2>Переменные объявленные через <code>let</code> живут только внутри блока между <code>{</code> и <code>}</code></h2>
     <pre>
       <code class="language-javascript line-numbers">
@@ -350,7 +359,10 @@
     </ul>
   </section>
 
-  <section class="slide" id="const">
+  <section class="slide chapter" id="const">
+    <h2>Константы с <code>const</code></h2>
+  </section>
+  <section class="slide">
     <h2>Объявляем константы через <code>const</code></h2>
     <pre>
       <code class="language-javascript line-numbers">
@@ -421,7 +433,10 @@
     </ul>
   </section>
 
-  <section class="slide" id="arrow-func">
+  <section class="slide chapter" id="arrow-func">
+    <h2>Функции-стрелки</h2>
+  </section>
+  <section class="slide">
     <h2>Функции-стрелки <code>=&gt;</code></h2>
     <pre>
       <code class="language-javascript line-numbers">
@@ -607,7 +622,10 @@
     </ul>
   </section>
 
-  <section class="slide" id="default-args">
+  <section class="slide chapter" id="default-args">
+    <h2>Аргументы функции по умолчанию</h2>
+  </section>
+  <section class="slide">
     <h2>Значения по умолчанию аргументов функции</h2>
     <pre>
       <code class="language-javascript line-numbers">
@@ -623,6 +641,9 @@
     </pre>
   </section>
 
+  <section class="slide chapter" id="rest">
+    <h2>Объединение параметров</h2>
+  </section>
   <section class="slide">
     <h2>Возмедем все аргументы фунции в квадрат и вернем их массив</h2>
     <pre>
@@ -654,7 +675,7 @@
       Теперь все работает. Но есть два недостатка. Во-первых, <code>arguments</code> нужно преобразовывать в массив или заимствовать методы массива. Во-вторых, не очевидно что функция вообще принимает параметры.
     </p>
   </section>
-  <section class="slide" id="rest">
+  <section class="slide">
     <h2>Оператор объединения <code>…</code> позволяет собрать все аргументы функции в реальный массив</h2>
     <pre>
       <code class="language-javascript line-numbers">
@@ -686,6 +707,9 @@
     </p>
   </section>
 
+  <section class="slide chapter" id="spread">
+    <h2>Деструктуризация параметров</h2>
+  </section>
   <section class="slide">
     <h2>Ищем максимум с использованием <code>apply</code></h2>
     <pre>
@@ -699,7 +723,7 @@
       Если мы хотим передать в функцию с переменным числом аргументов массив, то единственный способ был использовать метод функции <code>apply</code>, который принимал вторым аргументом массив аргументов для вызываемой функции.
     </p>
   </section>
-  <section class="slide" id="spread">
+  <section class="slide">
     <h2>Оператор деструктуризации <code>…</code> позволяет разбить массив и добавить как аргументы</h2>
     <pre>
       <code class="language-javascript line-numbers">
@@ -713,7 +737,10 @@
     </p>
   </section>
 
-  <section class="slide" id="destructuring">
+  <section class="slide chapter" id="destructuring">
+    <h2>Оператор деструктуризации</h2>
+  </section>
+  <section class="slide">
     <h2>Деструктуризация массивов</h2>
     <p>
       Используя оператор присвоения можно легко получить значения элементов массива в переменные:
@@ -725,33 +752,6 @@
         console.log(name); // Иван
         console.log(age); // 32
         console.log(city); // Уфа
-      </code>
-    </pre>
-  </section>
-  <section class="slide">
-    <h2>Деструктуризация объектов</h2>
-    <p>
-      Аналогично и с объектами. Если имена переменных совпадают с ключами:
-    </p>
-    <pre>
-      <code class="language-javascript line-numbers">
-        let info = { name: 'Иван', age: 32, city: 'Уфа' };
-        <mark>let {name, age, city} = info;</mark>
-        console.log(name, age, city); // Иван 32 Уфа
-      </code>
-    </pre>
-  </section>
-  <section class="slide">
-    <h2>Деструктуризация объектов в переменные не совпадающие с ключами</h2>
-    <p>
-      Нужно указать ключи, и переменные через <code>:</code>. Все ключи объекта задействовать не обязательно:
-    </p>
-    <pre>
-      <code class="language-javascript line-numbers">
-        let info = { name: 'Иван', age: 32, city: 'Уфа' };
-        <mark>let { name: userName, city: location } = info;</mark>
-        console.log(userName); // Иван
-        console.log(location); // Уфа
       </code>
     </pre>
   </section>
@@ -770,8 +770,52 @@
       </code>
     </pre>
   </section>
+  <section class="slide">
+    <h2>Деструктуризация объектов</h2>
+    <p>
+      Аналогично и с объектами. Если имена переменных совпадают с ключами:
+    </p>
+    <pre>
+      <code class="language-javascript line-numbers">
+        let info = { name: 'Иван', age: 32, city: 'Уфа' };
+        <mark>let {name, age, city} = info;</mark>
+        console.log(name, age, city); // Иван 32 Уфа
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Не обязательно брать все свойства</h2>
+    <p>
+      Достаточно чтобы имя переменной совпадало с названием ключа:
+    </p>
+    <pre>
+      <code class="language-javascript line-numbers">
+        let info = { name: 'Иван', age: 32, city: 'Уфа' };
+        <mark>let {city} = info;</mark>
+        <mark>let {name} = info;</mark>
+        console.log(name, city); // Иван, Уфа
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Деструктуризация объектов в переменные не совпадающие с ключами</h2>
+    <p>
+      Нужно указать ключи, и переменные через <code>:</code>. Все ключи объекта задействовать не обязательно:
+    </p>
+    <pre>
+      <code class="language-javascript line-numbers">
+        let info = { name: 'Иван', age: 32, city: 'Уфа' };
+        <mark>let { name: userName, city: location } = info;</mark>
+        console.log(userName); // Иван
+        console.log(location); // Уфа
+      </code>
+    </pre>
+  </section>
 
-  <section class="slide" id="object-literals">
+  <section class="slide chapter" id="object-literals">
+    <h2>Объектный литерал</h2>
+  </section>
+  <section class="slide">
     <h2>Создание свойств из переменных</h2>
     <pre>
       <code class="language-javascript line-numbers">
@@ -807,17 +851,27 @@
     </pre>
   </section>
   <section class="slide">
-    <h2>Короткая запись для методов</h2>
-    <pre>
+    <h2>Короткая запись для методов объектов</h2>
+    <pre style="font-size: 90%">
       <code class="language-javascript line-numbers">
         var user = {
-          name: 'Иван',
           show() {
             console.log(this.name);
-          }
-        }
-
+          },
+          name: 'Иван'
+        };
         user.show(); // <mark>Иван</mark>
+      </code>
+    </pre>
+    <p>Ранее мы записывали это так:</p>
+    <pre style="font-size: 90%">
+      <code class="language-javascript line-numbers">
+        var user = {
+          <mark>show: function () {
+            console.log(this.name);
+          }</mark>,
+          name: 'Иван'
+        };
       </code>
     </pre>
   </section>
@@ -839,8 +893,51 @@
     </pre>
   </section>
 
+  <section class="slide chapter">
+    <h2>«Классы» в JS</h2>
+  </section>
+  <section class="slide">
+    <h2>JavaScript — прототипно-ориентированный язык программирования</h2>
+    <ul>
+      <li>В JS нет классических классов и классического наследования</li>
+      <li>И они не появились в с выходом ES2016</li>
+      <li>Объекты получают свойства и методы прототипа из свойства <code>__proto__</code>, как и раньше.</li>
+      <li>Для создания объекта с заранее описанными возможностями нужно создать конструктор (функция) и прототип (свойство <code>prototype</code> конструктора)</li>
+      <li>Для носледования нужно чтобы прототип потомка имел в качестве прототипа предка</li>
+    </ul>
+  </section>
+  <section class="slide">
+    <h2>Внешне все похоже на ООП</h2>
+    <p>Создаем фигуру, перемещаем, выводим координаты:</p>
+    <pre>
+      <code class="language-javascript line-numbers">
+        var figure = new Shape(100, 100);
+        figure.move(50, 70);
+
+        console.log(figure.x, figure.y); // <mark>150, 170</mark>
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>«Классы» в ES5</h2>
+    <p>Создаем конструктор <code>Shape</code>, определяем метод <code>move</code> в прототипе <code>Shape.prototype</code>.</p>
+    <pre>
+      <code class="language-javascript line-numbers">
+        function Shape(x, y) {
+          this.x = x;
+          this.y = y;
+        }
+
+        Shape.prototype.move = function (dx, dy) {
+          this.x += dx;
+          this.y += dy;
+        };
+      </code>
+    </pre>
+    <p>И наш пример работает. Но никаких классов. Это просто функции, объекты, свойства и контекст вызова <code>this</code>.</p>
+  </section>
   <section class="slide" id="class">
-    <h2>Синтаксический сахар: создание классов</h2>
+    <h2>«Классы» в ES2015 — cинтаксический сахар</h2>
     <pre>
       <code class="language-javascript line-numbers">
         class Shape {
@@ -855,58 +952,144 @@
         }
       </code>
     </pre>
+    <p>Наконец-то! Классы! Конструктор! Метод!</p>
   </section>
   <section class="slide">
-    <h2>Классы в ES2015 это просто другая форма записи</h2>
+    <h2>Но никаких классов нет</h2>
     <p>
-      Этот код эквивалентен примеру с <code>class</code>.
+      Это всё те же функции, объекты, свойства и контекст вызова.
     </p>
     <pre>
       <code class="language-javascript line-numbers">
-        function Shape(x, y) {
-          this.x = x;
-          this.y = y;
+        class Shape {
+          //…
         }
-        Shape.prototype.move = function (dx, dy) {
-          this.x += dx;
-          this.y += dy;
-        }
+
+        console.log(Shape); // <mark>[Function: Shape]</mark>
+        console.log(Shape.prototype); <mark>Shape {}</mark>
+        console.log(Shape.prototype.move); <mark>function move(dx = 0, dy = 0) {}</mark>
+      </code>
+    </pre>
+    <p>Но запись явно аккуратнее и нагляднее.</p>
+  </section>
+  <section class="slide">
+    <h2>Создадим еще круг, который тоже можно двигать</h2>
+    <p>Создаем круг, перемещаем, выводим координаты и площадь:</p>
+    <pre>
+      <code class="language-javascript line-numbers">
+        var figure = new Shape(100, 100);
+        figure.move(50, 70);
+
+        var circle = new Circle(50, 50, 10);
+        circle.move(20, 10);
+        console.log(circle.x, circle.y); // <mark>70, 60</mark>
+        console.log(circle.squere()); // <mark>314.1592653589793</mark>
       </code>
     </pre>
   </section>
   <section class="slide">
-    <h2>Наследование классов с использованием <code>extends</code> и <code>super</code></h2>
+    <h2>Наследуем в ES5</h2>
+    <p>«Боже, что это за странные заклинания?!»</p>
+    <pre>
+      <code class="language-javascript line-numbers">
+        function Cirle(x, y, radius) {
+          Shape.call(this, x, y);
+          this.radius = radius;
+        }
+        Cirle.prototype = Object.create(Shape.prototype);
+        Cirle.prototype.constructor = Cirle;
+        Cirle.prototype.squere = function () {
+          return this.radius * this.radius * Math.PI;
+        }
+      </code>
+    </pre>
+    <p>Это прототипное наследование! Но как это работает?</p>
+  </section>
+  <section class="slide">
+    <h2>Как работает прототипное наследование</h2>
+    <ol>
+      <li>Если в объекте <code>circle</code> нет нужного свойства, то оно ищется в объекте <code>circle.__proto__</code>.</li>
+      <li>А что там? А там ссылка на <code>Circle.prototype</code>.</li>
+      <li>Так мы можем получить <code>squere</code>, но не <code>move</code>.</li>
+      <li>Тогда отправляемся искать куда? Опять в <code>obj.__proto__.__proto__</code>, что эквивалентно <code>Circle.prototype.__proto__</code>.</li>
+      <li>А там что? А там ссылка на <code>Shape.prototype</code>.</li>
+      <li>Почему? Потому что <code>Object.create</code> создает объект, в свойстве <code>__proto__</code> которого будет переданный объект, а мы передали <code>Shape.prototype</code>.</li>
+    </ol>
+  </section>
+  <section class="slide">
+    <h2>Наследование «классов» в ES2015</h2>
+    <p>В ES2015 кроме <code>class</code> появились еще операторы <code>extends</code> и <code>super</code>.</p>
     <pre>
       <code class="language-javascript line-numbers">
         class Circle extends Shape {
           constructor(x, y, radius) {
             super(x, y);
-            this.raduis = radius;
+            this.radius = radius;
+          }
+          squere() {
+            return this.radius * this.radius * Math.PI;
           }
         }
+      </code>
+    </pre>
+    <p>Но не дайте себя обмануть. Это все еще прототипы и прототипное наследование.</p>
+  </section>
+  <section class="slide">
+    <h2>Наследование это тоже синтаксический сахар</h2>
+    <p>Хоть и очень сладкий</p>
+    <pre>
+      <code class="language-javascript line-numbers">
+        class Circle extends Shape {
+          // …
+        }
 
-        let item = new Circle(50, 50, 30);
-        item.move(10, 10);
+        console.log(
+          Circle.prototype.__proto__ === Shape.prototype
+        ); // <mark>true</mark>
       </code>
     </pre>
   </section>
   <section class="slide">
-    <h2>Опять же это просто прототипное наследование как и раньше</h2>
-    <p>
-      Этот код эквивалентен примеру с <code>class</code>.
-    </p>
+    <h2>Геттеры и сеттеры в «классах»</h2>
+    <p>Создаются так же как объектных литералах:</p>
     <pre>
       <code class="language-javascript line-numbers">
-        function Cirle(x, y, radius) {
-          Shape.call(this, x, y);
-          this.raduis = radius;
+        class Circle extends Shape {
+          constructor(x, y, radius) {
+            super(x, y);
+            this.radius = radius;
+          }
+          <mark>get</mark> squere() {
+            return this.radius * this.radius * Math.PI;
+          }
         }
-        Cirle.prototype = Object.create(Shape.prototype);
-        Cirle.prototype.constructor = Cirle;
+
+        var circle = new Circle(50, 50, 10);
+        console.log(<mark>circle.squere</mark>); // <mark>314.1592653589793</mark>
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Статические методы в «классах»</h2>
+    <p>Создаются добавлением ключевого слова <code>static</code>:</p>
+    <pre>
+      <code class="language-javascript line-numbers">
+        class Shape {
+          // …
+          static create(...args) {
+            return new Shape(...args);
+          }
+        }
+
+        var circle = Shape.create(50, 50);
+        console.log(Shape.create); // <mark>function create(...args) {}</mark>
       </code>
     </pre>
   </section>
 
+  <section class="slide chapter">
+    <h2>Прочее</h2>
+  </section>
   <section class="slide" id="templates">
     <h2>Строковые шаблоны</h2>
     <p>
@@ -919,8 +1102,8 @@
         console.log(`Письмо отправлено по адресу ${email}.`);
       </code>
     </pre>
+    <p>Теперь можно устроить PHP внутри JS 🤖</p>
   </section>
-
   <section class="slide" id="for-of">
     <h2>Перебор итерируемых элементов с помощью <code>for … of</code></h2>
     <pre>
@@ -947,8 +1130,11 @@
     </ul>
   </section>
 
-  <section class="slide" id="homework">
-    <h2>Домашнее задание — часть 1</h2>
+  <section class="slide chapter" id="homework">
+    <h2>Домашнее задание</h2>
+  </section>
+  <section class="slide">
+    <h2>Часть 1</h2>
     <p>
       В задании необходимо использовать возможности ES2015 по максимуму.
     </p>
@@ -958,7 +1144,7 @@
     </ul>
   </section>
   <section class="slide">
-    <h2>Домашнее задание — часть 2</h2>
+    <h2>Часть 2</h2>
     <ul>
       <li>Создать два списка покемонов и сохранить их в переменных <code>lost</code> и <code>found</code>. Имена и уровни придумайте самостоятельно.</li>
       <li>Добавить несколько новых покемонов в каждый список.</li>
@@ -967,7 +1153,7 @@
     </ul>
   </section>
   <section class="slide">
-    <h2>Домашнее задание — на зачет с отличием</h2>
+    <h2>На зачет с отличием</h2>
     <ul>
       <li>Добавить спискам покемонов метод <code>max</code>, который возвращает покемона максимального уровня.</li>
       <li>Переопределите и используйте метод <code>valueOf</code> у покемонов, для решения этой задачи.</li>
