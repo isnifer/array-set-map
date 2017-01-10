@@ -1,46 +1,1296 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <title>Node, Angular и MongoDB: разработка полноценных веб-приложений</title>
+  <title>ES2015 в Node.js</title>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="shower/themes/ribbon/styles/screen-16x10.css">
+  <link rel="stylesheet" href="node_modules/shower-ribbon/styles/screen-4x3.css">
   <link rel="stylesheet" href="css/prism.css">
   <link rel="stylesheet" href="css/prism-fix.css">
   <link rel="stylesheet" href="css/netology.css">
 </head>
 <body class="shower list">
   <header class="caption">
-    <h1>Node, Angular и MongoDB: разработка полноценных веб-приложений</h1>
+    <h1>Array, Set, Map</h1>
+    <p>Антон Кузнецов, Tipsi</p>
   </header>
 
   <section class="slide" id="cover">
-    <h2>Node, Angular и MongoDB: разработка полноценных веб-приложений</h2>
+    <h2>Array, Set, Map</h2>
+    <p>
+      <img src="i/kuznetsov.jpg" alt="" class="avatar">
+      Антон Кузнецов <span class="position">Tipsi</span>
+    </p>
   </section>
-
-  <section class="slide" id="roadmap">
-    <h2>Программа курса</h2>
-    <ol>
-      <li><a href="#node">Изучаем основы серверного программирования на JavaScript</a></li>
-      <li><a href="#webserver">Создаем и запускаем веб-сервер, используя Express и Socket.io</a></li>
-      <li><a href="#mongodb">Храним данные в документной базе данных MongoDB</a></li>
-      <li><a href="#angular">Строим интерактивные веб-интерфейсы на Angular</a></li>
-      <li><a href="#tdd">Тестируем веб-приложение</a></li>
-    </ol>
-  </section>
-
-  <section class="slide" id="node">
-    <h2>Изучаем основы серверного программирования на JavaScript</h2>
-    <ul>
-      <li><a href="./es2015.html">Спецификация EcmaScript 2015</a></li>
-      <li><a href="./fs.html">Работа с файлами в Node.js</a></li>
-      <li><a href="https://easy-deep-learning.github.io/event-emitter/">Создание и обработка событий с <code>EventEmmiter</code></a></li>
-      <li>Потоки</li>
-      <li>NPM</li>
+  <section class="slide author" id="author">
+    <img src="i/kuznetsov.jpg" alt="">
+    <h1>Антон Кузнецов</h1>
+    <p class="position">Front-End разработчик в Tipsi</p>
+    <ul class="contacts">
+      <li><a href="mailto:isnifer@gmail.ru"><i class="fa fa-envelope-o" aria-hidden="true"></i>isnifer@gmail.ru</a></li>
+      <li><a href="skype:isnifer?call"><i class="fa fa-skype" aria-hidden="true"></i>isnifer</a></li>
+      <li><a href="https://fb.me/isnifee"><i class="fa fa-facebook" aria-hidden="true"></i>fb.me/isnifee</a></li>
     </ul>
   </section>
 
+  <section class="slide chapter">
+    <h2>Array</h2>
+  </section>
+  <section class="slide">
+    <h2>Конструктор Array</h2>
+    <ul>
+      <li>Массив как и другие структуры данных в JS является объектом</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        typeof [] === 'object' // => true
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Конструктор Array</h2>
+    <ul>
+      <li>Массив как и другие структуры данных в JS является объектом</li>
+      <li>Массиву можно присвоить свойства и методы</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2]
+        myArray.key = 'value'
+        console.log(myArray.key) // => 'value'
+        myArray.getValue = function () {
+          return this.key
+        }
+        console.log(myArray.getValue()) // => 'value'
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Конструктор Array</h2>
+    <ul>
+      <li>Массив как и другие структуры данных в JS является объектом</li>
+      <li>Массиву можно присвоить свойства и методы</li>
+      <li>Его можно создать с помощью конструктора и ключевого слова <code>new</code></li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = new Array(1,2,3)
+        console.log(myArray) // => [1,2,3]    
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Конструктор Array</h2>
+    <ul>
+      <li>Массив как и другие структуры данных в JS является объектом</li>
+      <li>Массиву можно присвоить свойства и методы</li>
+      <li>Его можно создать с помощью конструктора и ключевого слова <code>new</code></li>
+      <li>Но лучше использовать квадратные скобки</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3]
+        console.log(myArray) // => [1,2,3]  
+      </code>
+    </pre>
+    <p>Поэтому про конструктор помните, но не создавайте новые массивы с помощью него.</p>
+  </section>
+  <section class="slide">
+    <h2>Инициализация Array с одним числовым аргументом</h2>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myWrongArray = new Array(1)
+        console.log(myWrongArray) // => [undefined]
+
+        const myOneMoreWrongArray = new Array(3)
+        console.log(myOneMoreWrongArray) 
+        // => [undefined, undefined, undefined]
+      </code>
+    </pre>
+    <p>Наверняка, вы не этого ожидали</p>
+  </section>
+  <section class="slide">
+    <h2>Свойство .length</h2>
+    <ul>
+      <li>Всего лишь количество элементов в массиве</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3]
+        console.log(myArray.length) // => 3
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Свойство .length</h2>
+    <ul>
+      <li>Всего лишь количество элементов в массиве</li>
+      <li>Может быть равно нулю</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = []
+        console.log(myArray.length) // => 0
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Свойство .length на практике</h2>
+    <ul>
+      <li>Функция, определяющая пустой ли массив</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        function isEmptyArray (array) {
+          return array.length === 0
+        }
+
+        const myArray = [1,2,3]
+        const myEmptyArray = []
+
+        console.log(isEmptyArray(myArray)) // => false
+        console.log(isEmptyArray(myEmptyArray)) // => true
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Свойство .length на практике</h2>
+    <ul>
+      <li>Экономит время и ресурсы</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        function multiplyArray(array, value) {
+          if (array.length !== 0) {
+            const nextArray = []
+            for (let i = 0; i < array.length; i++) {
+              nextArray[i] = array[i] * value
+            }
+            return nextArray
+          }
+          return array
+        }
+
+        console.log(multiplyArray([1,2,3], 2)) // => [2,4,6]
+        console.log(multiplyArray([], 2)) // => []
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Свойство .length на практике</h2>
+    <ul>
+      <li>При этом свойство .length — перезаписываемое</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4,5]
+        console.log(myArray.length) // => 5
+
+        myArray.length = 3 // Уменьшим длину массива
+        console.log(myArray.length) // => 3
+        console.log(myArray) // => [1,2,3]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Свойство .length на практике</h2>
+    <ul>
+      <li>При этом свойство .length — перезаписываемое</li>
+      <li>При увеличении ведет себя несколько иначе</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4,5]
+        console.log(myArray.length) // => 5
+
+        myArray.length = 3 // Уменьшим длину массива
+        console.log(myArray.length) // => 3
+        console.log(myArray) // => [1,2,3]
+
+        myArray.length = 5 // Увеличим до 5
+        console.log(myArray.length) // => 5
+        console.log(myArray) // => А что получится здесь?
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Свойство .length на практике</h2>
+    <ul>
+      <li>При этом свойство .length — перезаписываемое</li>
+      <li>При увеличении ведет себя несколько иначе</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4,5]
+        console.log(myArray.length) // => 5
+
+        myArray.length = 3 // Уменьшим длину массива
+        console.log(myArray.length) // => 3
+        console.log(myArray) // => [1,2,3]
+
+        myArray.length = 5 // Увеличим до 5
+        console.log(myArray.length) // => 5
+        console.log(myArray) // => [1,2,3,undefined,undefined]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Индексы элементов массива</h2>
+    <ul>
+      <li>Каждый элемент имеет свой индекс</li>
+      <li>Отсчет начинается с нуля</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          'John', 'Paul', 'Tommy', 'Michael', 'Danny'
+        ]
+        console.log(myArray[0]) // => 'John'
+        console.log(myArray[3]) // => 'Michael'
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Индексы элементов массива</h2>
+    <ul>
+      <li>Каждый элемент имеет свой индекс</li>
+      <li>Отсчет начинается с нуля</li>
+      <li>Элемент массива можно изменить</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          'John', 'Paul', 'Tommy', 'Michael', 'Danny'
+        ]
+        myArray[0] = 'George'
+        myArray[3] = 'Sean'
+        console.log(myArray) 
+        // => ['George', 'Paul', 'Tommy', 'Sean', 'Danny']
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Индексы элементов массива</h2>
+    <ul>
+      <li>Каждый элемент имеет свой индекс</li>
+      <li>Отсчет начинается с нуля</li>
+      <li>Элемент массива можно изменить</li>
+      <li>Можно добавить элемент в конец массива</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = ['George', 'Paul']
+        console.log(myArray.length) // => 2
+
+        // Добавим новый элемент в массив
+        myArray[myArray.length] = 'Jack'
+        console.log(myArray) // => ['George', 'Paul', 'Jack']
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Индексы элементов массива</h2>
+    <ul>
+      <li>А что если добавить элемент с индексом больше длины массива?</li>
+      <li>Какова будет его длина?</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3]
+        console.log(myArray.length) // => 3
+
+        myArray[6] = 10
+        console.log(myArray.length) // => ?
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Индексы элементов массива</h2>
+    <ul>
+      <li>А что если добавить элемент с индексом больше длины массива?</li>
+      <li>Какова будет его длина?</li>
+      <li>Как будет выглядеть массив?</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3]
+        console.log(myArray.length) // => 3
+
+        myArray[6] = 10
+        console.log(myArray.length) // => 7
+        console.log(myArray) // => ?
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Индексы элементов массива</h2>
+    <ul>
+      <li>А что если добавить элемент с индексом больше длины массива?</li>
+      <li>Какова будет его длина?</li>
+      <li>Как будет выглядеть массив?</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3]
+        console.log(myArray.length) // => 3
+
+        myArray[6] = 10
+        console.log(myArray.length) // => 7
+        console.log(myArray) 
+        // => [1,2,3,undefined,undefined,undefined,10]
+      </code>
+    </pre>
+    <p>В общем, не делайте так, чтобы не получить непредсказумо заполненный массив.</p>
+  </section>
+  <section class="slide">
+    <h2>Метод .indexOf()</h2>
+    <ul>
+      <li>Вернет индекс <b>первого</b> найденного элемента в массиве</li>
+      <li>Иначе вернет -1</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          'Paul', 'Tommy', 'Sean', 'Danny', 'Sean'
+        ]
+        console.log(myArray.indexOf('Sean')) // => 2
+        console.log(myArray.indexOf('Jack')) // => -1
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .lastIndexOf()</h2>
+    <ul>
+      <li>Вернет индекс <b>последнего</b> найденного элемента в массиве</li>
+      <li>Иначе вернет -1</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          'Paul', 'Tommy', 'Sean', 'Danny', 'Sean'
+        ]
+        console.log(myArray.lastIndexOf('Sean')) // => 4
+        console.log(myArray.lastIndexOf('Jack')) // => -1
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .indexOf() на практике</h2>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4];
+        const myArrayTwo = [2,3,5,6]
+        const result = []
+
+        for (let i = 0; i < myArray.length; i++) {
+          // Проверяем совпадение элементов массивов 
+          if (myArrayTwo.indexOf(myArray[i]) !== -1) {
+            // Если индекс текущего элемента не равен -1, 
+            // мы отправим найденный элемент в новый массив
+            result[result.length] = myArray[i]
+          }
+        }
+
+        console.log(result) // => [2,3]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .includes() — часть стандарта ES6</h2>
+    <ul>
+      <li>Как это было до появления .includes()</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        ...
+        if (array.indexOf('something') !== -1) {
+          // сделать что-нибудь
+        }
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .includes() — часть стандарта ES6</h2>
+    <ul>
+      <li>Как это было до появления .includes()</li>
+      <li>Как это выглядит с помощью .includes()</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        ...
+        if (array.includes('something')) {
+          // сделать что-нибудь
+        }
+      </code>
+    </pre>
+    <p>Отпала необходимость проверки на -1</p>
+  </section>
+  <section class="slide">
+    <h2>Метод .includes() — часть стандарта ES6</h2>
+    <ul>
+      <li>Как это было до появления .includes()</li>
+      <li>Как это выглядит с помощью .includes()</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          'Paul', 'Tommy', 'Sean', 'Danny', 'Sean'
+        ]
+        console.log(myArray.includes('Tommy')) // => true
+        console.log(myArray.includes('Jack')) // => false
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .push()</h2>
+    <ul>
+      <li>Добавляет новый элемент в конец массива</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3]
+        myArray[myArray.length] = 4
+        console.log(myArray) // => [1,2,3,4]
+
+        // но можно проще
+        myArray.push(5) 
+        console.log(myArray) // => [1,2,3,4,5]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .push()</h2>
+    <ul>
+      <li>Добавляет новый элемент в конец массива</li>
+      <li>Вызов метода без аргументов ничего не делает</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4,5]
+
+        myArray.push()
+        console.log(myArray) // => [1,2,3,4,5]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .push()</h2>
+    <ul>
+      <li>Добавляет новый элемент в конец массива</li>
+      <li>Вызов метода без аргументов ничего не делает</li>
+      <li>Вызов метода возвращает новую длину массива</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4,5]
+
+        console.log(myArray.push(6)) // => 6
+        console.log(myArray) // => [1,2,3,4,5,6]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .pop()</h2>
+    <ul>
+      <li>Удаляет последний элемент из массива, при этом изменяя его</li>
+      <li>Вызов метода возвращает удаленный элемент</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          'Paul', 'Tommy', 'Sean', 'Danny', 'Sean'
+        ]
+        console.log(myArray.pop()) // => 'Sean'
+        console.log(myArray) 
+        // => ['Paul', 'Tommy', 'Sean', 'Danny']
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .unshift()</h2>
+    <ul>
+      <li>Добавляет элемент в начало массива</li>
+      <li>Вызов метода возвращает новую длину массива</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3]
+        console.log(myArray.unshift(5)) // => 4
+        console.log(myArray) // => [5,1,2,3]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .shift()</h2>
+    <ul>
+      <li>Удаляет первый элемент массива</li>
+      <li>Вызов метода возвращает удаленный</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3]
+        console.log(myArray.shift()) // => 1
+        console.log(myArray) // => [2,3]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>.push()/.pop() vs .unshift()/.shift()</h2>
+    <ul>
+      <li>.push()/.pop() — быстрые</li>
+      <li>.unshift()/.shift() — медленные</li>
+    </ul>
+    <p>При использовании методов .unshift()/.shift() полностью пересчитываются все индексы в массиве, т.к. производится изменение в начале массива</p>
+  </section>
+  <section class="slide">
+    <h2>Метод .splice()</h2>
+    <ul>
+      <li>Удаляет набор элементов с определенного индекса</li>
+      <li>Вызов метода возвращает массив удаленных элементов</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4,5,6]
+        // в качестве первого аргумента 
+        // необходимо передать индекс элемента, 
+        // с которого надо удалить элементы
+        console.log(myArray.splice(3)) // => [4,5,6]
+        console.log(myArray) // => [1,2,3]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .splice()</h2>
+    <ul>
+      <li>Удаляет набор элементов с определенного индекса</li>
+      <li>Вызов метода возвращает массив удаленных элементов</li>
+      <li>Вторым аргументом можно передать количество удаляемых элементов</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4,5,6]
+        console.log(myArray.splice(3, 2)) // => [4,5]
+        console.log(myArray) // => [1, 2, 3, 6]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .splice()</h2>
+    <ul>
+      <li>Удаляет набор элементов с определенного индекса</li>
+      <li>Вызов метода возвращает массив удаленных элементов</li>
+      <li>Вторым аргументом можно передать количество удаляемых элементов</li>
+      <li>Аргументы, начиная с третьего будут добавлены на место удаленных</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4,5,6]
+        console.log(
+          myArray.splice(3, 2, 'John', 'Sean', 'Tommy')
+        ) // => [4,5]
+        console.log(myArray) 
+        // => [1, 2, 3, 'John', 'Sean', 'Tommy', 6]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .splice()</h2>
+    <ul>
+      <li>Удаляет набор элементов с определенного индекса</li>
+      <li>Вызов метода возвращает массив удаленных элементов</li>
+      <li>Вторым аргументом можно передать количество удаляемых элементов</li>
+      <li>Аргументы, начиная с третьего будут добавлены на место удаленных</li>
+      <li>Если надо только добавить элементы, второй аргумент должен быть 0</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4,5,6]
+        console.log(
+          myArray.splice(3, 0, 'John', 'Sean', 'Tommy')
+        ) // => []
+        console.log(myArray) 
+        // => [1, 2, 3, 'John', 'Sean', 'Tommy', 4, 5, 6]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .slice()</h2>
+    <ul>
+      <li>Вызов метода возвращает срез массива, не меняя исходный</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          'Paul', 'Tommy', 'Sean', 'Danny', 'Sean'
+        ]
+        const copyOfArray = myArray.slice()
+        console.log(copyOfArray) 
+        // => ['Paul', 'Tommy', 'Sean', 'Danny', 'Sean']
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .slice()</h2>
+    <ul>
+      <li>Вызов метода возвращает срез массива, не меняя исходный</li>
+      <li>Срез получить можно, начиная с определенного индекса</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          'Paul', 'Tommy', 'Sean', 'Danny', 'Sean'
+        ]
+        const partOfArray = myArray.slice(3)
+        console.log(partOfArray) // => ['Danny', 'Sean']
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .slice()</h2>
+    <ul>
+      <li>Вызов метода возвращает срез массива, не меняя исходный</li>
+      <li>Срез получить можно, начиная с определенного индекса</li>
+      <li>И до определенного индекса (не включая элемент с этим индексом)</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          'Paul', 'Tommy', 'Sean', 'Danny', 'Sean'
+        ]
+        const partOfArray = myArray.slice(1, 3)
+        console.log(partOfArray) // => ['Tommy', 'Sean']
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .forEach()</h2>
+    <ul>
+      <li>Позволяет обойти массив и с помощью функции-итератора</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4]
+        const destinationArray = []
+
+        // первый аргумент итератора - элемент массива
+        myArray.forEach(function (element) {
+          // в теле функции мы можем выполнять любые операции
+          
+          // с каждым выполнением функции будем
+          // отправлять новый элемент в нужный массив
+          destinationArray.push(element * 2)
+        })
+
+        console.log(destinationArray) // => [2,4,6,8]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .forEach()</h2>
+    <ul>
+      <li>Позволяет обойти массив и с помощью функции-итератора</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4]
+
+        myArray.forEach(function (element) {
+          console.log(element)
+        })
+
+        // => 1
+        // => 2
+        // => 3
+        // => 4
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .forEach() vs. for-loop</h2>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4]
+        const destinationArray = []
+
+        myArray.forEach(function (element) {
+          destinationArray.push(element * 2)
+        })
+
+        console.log(destinationArray) // => [2,4,6,8]
+
+        for (var i = 0; i < myArray.length; i++) {
+          destinationArray.push(myArray[i] * 2)
+        }
+
+        console.log(destinationArray) // => [2,4,6,8,2,4,6,8]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .forEach()</h2>
+    <ul>
+      <li>Позволяет обойти массив и с помощью функции-итератора</li>
+      <li>Второй аргумент итератора - индекс текущего элемента</li>
+      <li>Третий - массив, который вы обходите (на практикте не используется)</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = ['John', 'Tom', 'Michael']
+        myArray.forEach(function (element, index, array) {
+          console.log(element, index, array)
+        })
+
+        // => 'John' 0 ['John', 'Tom', 'Michael']
+        // => 'Tom' 1 ['John', 'Tom', 'Michael']
+        // => 'Michael' 2 ['John', 'Tom', 'Michael']
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .find()</h2>
+    <ul>
+      <li>Позволяет обойти массив и найти нужный элемент по критерию</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [10, 20, 15, 40, 23]
+        const foundedElement = myArray.find(function (el) {
+          return el > 15
+        })
+        console.log(foundedElement) // => 20
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .find()</h2>
+    <ul>
+      <li>Позволяет обойти массив и найти нужный элемент по критерию</li>
+      <li>Возвращает первый найденный элемент и прекращает поиск</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          {name: 'Bill', age: 15},
+          {name: 'Max', age: 40},
+          {name: 'Casey', age: 23},
+        ]
+
+        // Найдем человека в списке, старше 30
+        const oldMan = myArray.find(function (man) {
+          return man.age > 30
+        })
+        console.log(oldMan) // => {name: 'Max', age: 40}
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .find()</h2>
+    <ul>
+      <li>Возвращает первый найденный элемент и прекращает поиск</li>
+      <li>Если ничего не будет найдено - вернет <mark>undefined</mark></li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          {name: 'Bill', age: 15},
+          {name: 'Max', age: 40},
+          {name: 'Casey', age: 23},
+        ]
+
+        const oldMan = myArray.find(function (man) {
+          return man.age > 50
+        })
+        console.log(oldMan) // => undefined
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .findIndex()</h2>
+    <ul>
+      <li>Работает аналогично .find(), но возвращает индекс элемента</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [10, 20, 15, 40, 23]
+        const index = myArray.findIndex(function (el) {
+          return el > 15
+        })
+        console.log(index) // => 1
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .findIndex()</h2>
+    <ul>
+      <li>Работает аналогично .find(), но возвращает индекс элемента</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          {name: 'Jack', age: 20},
+          {name: 'Max', age: 40},
+          {name: 'Casey', age: 23},
+        ]
+
+        const index = myArray.findIndex(function (man) {
+          return man.age > 30
+        })
+        console.log(index) // => 3
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .findIndex()</h2>
+    <ul>
+      <li>Работает аналогично .find(), но возвращает индекс элемента</li>
+      <li>Если ничего не найдено - вернет -1</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          {name: 'Jack', age: 20},
+          {name: 'Max', age: 40},
+          {name: 'Casey', age: 23},
+        ]
+
+        const index = myArray.findIndex(function (man) {
+          return man.age > 50
+        })
+        console.log(index) // => -1
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .filter()</h2>
+    <ul>
+      <li>В отличие от .find() возвращает массив найденных элементов</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [10, 20, 15, 40, 23]
+        const founded = myArray.filter(function (el) {
+          return el > 15
+        })
+        console.log(founded) // => [20, 40, 23]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .filter()</h2>
+    <ul>
+      <li>В отличие от .find() возвращает массив найденных элементов</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          {name: 'Jack', age: 20},
+          {name: 'Bill', age: 15},
+          {name: 'Max', age: 40},
+          {name: 'Tom', age: 23},
+        ]
+
+        const people = myArray.filter(function (man) {
+          return man.age > 20
+        })
+        console.log(people) 
+        // => [{name: 'Max', age: 40}, {name: 'Tom', age: 23}]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .filter()</h2>
+    <ul>
+      <li>В отличие от .find() возвращает массив найденных элементов</li>
+      <li>Если ничего не будет найдено - вернет пустой массив</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          {name: 'Bill', age: 15},
+          {name: 'Max', age: 40},
+          {name: 'Tom', age: 23},
+        ]
+
+        const people = myArray.filter(function (man) {
+          return man.age > 50
+        })
+        console.log(people) // => []
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .map()</h2>
+    <ul>
+      <li>Обходит массив с помощью итератора и возвращает новый массив</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4]
+        const nextArray = myArray.map(function (el) {
+          return el * 2
+        })
+        console.log(nextArray) // => [2,4,6,8]
+
+        // при этом оригинальный массив не изменился
+        console.log(myArray) // => [1,2,3,4]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .map()</h2>
+    <ul>
+      <li>Обходит массив с помощью итератора и возвращает новый массив</li>
+      <li>Внутри итератора можно делать что угодно</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4]
+        const nextArray = myArray.map(function (el, index) {
+          const obj = {}
+          const key = 'el_' + index
+          obj[key] = el
+          return obj
+        })
+
+        console.log(nextArray) 
+        // => [{el_0: 1}, {el_1: 2}, {el_2: 3}, {el_3: 4}]
+        console.log(myArray) // [1,2,3,4]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .reduce()</h2>
+    <ul>
+      <li>Принимает в качестве в аргумента функцию-итератор</li>
+      <li>Обходит массив с помощью итератора, возвращает нужный тип данных</li>
+      <li>Итератор на входе получает 4 аргумента:</li>
+      <ul>
+        <li>Предыдущий результат выполнения функции или значение по умолчанию</li>
+        <li>Текущий элемент массива</li>
+        <li>Индекс текущего элемента массива</li>
+        <li>Массив, по которому мы пробегаемся</li>
+      </ul>
+    </ul>
+  </section>
+  <section class="slide">
+    <h2>Метод .reduce() vs. Метод .map()</h2>
+    <pre>
+      <code class="language-javascript line-numbers">
+        // пример с .map()
+        const myArray = [1,2,3,4]
+        const nextArray = myArray.map(function (el) {
+          return el * 2
+        })
+        console.log(nextArray) // => [2,4,6,8]
+      </code>
+    </pre>
+    <pre>
+      <code class="language-javascript line-numbers">
+        // пример с .reduce()
+        const myArray = [1,2,3,4]
+        const nextArray = myArray.reduce(function (memo, el) {
+          memo.push(el * 2)
+          return memo
+        }, [])
+        console.log(nextArray) // => [2,4,6,8]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .reduce() vs. Метод .filter()</h2>
+    <pre>
+      <code class="language-javascript line-numbers">
+        // пример с .filter()
+        const myArray = [10, 20, 15, 40, 23]
+        const founded = myArray.filter(function (el) {
+          return el > 15
+        })
+        console.log(founded) // => [20, 40, 23]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .reduce() vs. Метод .filter()</h2>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [10, 20, 15, 40, 23]
+        const founded = myArray.reduce(function (memo, el) {
+          // если число больше 15, то добавим его в массив 
+          // и вернем этот массив с нашим новым элементом
+          if (el > 15) {
+            memo.push(el)
+            return memo
+          }
+          // если элемент не удовлетворяет нашим условиям,
+          // то просто вернем результат 
+          // вычисления прошлой итерации
+          return memo
+        }, [])
+        console.log(founded) // => [20, 40, 23]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .reduce() vs. Метод .find()</h2>
+    <pre>
+      <code class="language-javascript line-numbers">
+        // пример с .find()
+        const myArray = [10, 20, 15, 40, 23]
+        const founded = myArray.find(function (el) {
+          return el > 15
+        })
+        console.log(founded) // => 20
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .reduce() vs. Метод .find()</h2>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [10, 20, 15, 40, 23]
+        const founded = myArray.reduce(function (memo, el) {
+          // если мы еще не нашли искомый элемент
+          // и он больше 15, то возвращаем его
+          if (!memo && el > 15) {
+            return el
+          }
+          
+          // иначе просто вернем результат выполнения
+          // функции от предыдущей итерации
+          return memo
+        }, undefined) 
+        // в случае, если мы ничего не найдем,
+        // то должны вернуть undefined
+        console.log(founded) // => 20
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .reduce() vs. Метод .find()</h2>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [10, 20, 15, 40, 23]
+        const founded = myArray.reduce(function (memo, el) {
+          // если мы еще не нашли искомый элемент
+          // и он больше 50, то возвращаем его
+          if (!memo && el > <mark>50</mark>) {
+            return el
+          }
+          
+          // иначе просто вернем результат выполнения
+          // функции от предыдущей итерации
+          return memo
+        }, undefined) 
+        // в случае, если мы ничего не найдем,
+        // то должны вернуть undefined
+        console.log(founded) // => <mark>undefined</mark>
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .reduce()</h2>
+    <ul>
+      <li>Можно сосчитать сумму всех элементов массива</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [10, 20, 15, 40, 23]
+        const founded = myArray.reduce(function (memo, el) {
+          // будем прибавлять 
+          // к предыдущему значению текущее число
+          // и будем возвращать 
+          // в качестве результата выполнения функции
+          return memo + el
+        }, 0) // начнем все-таки отсчет с нуля
+        console.log(founded) // => 108
+      </code>
+    </pre>
+    <p>Использование этого метода ограничено вашей фантазией</p>
+  </section>
+  <section class="slide">
+    <h2>Метод .join()</h2>
+    <ul>
+      <li>Позволяет объединить все элементы массива в строку</li>
+      <li>В качестве аргумента принимает разделитель между элементами</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [
+          'J', 'a', 'v', 'a', 's', 'c', 'r', 'i', 'p', 't'
+        ]
+        const js = myArray.join('')
+        console.log(js) // => Javascript
+      </code>
+    </pre>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = ['Tom', 'Dale', 'Jack']
+        const names = myArray.join(', ')
+        console.log(names) // => 'Tom, Dale, Jack'
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .join()</h2>
+    <ul>
+      <li>Позволяет объединить все элементы массива в строку</li>
+      <li>В качестве аргумента принимает разделитель между элементами</li>
+      <li>Типы данных, не являющиеся строками приводятся к строковому типу</li>
+      <li>Для этой трансформации используется встроенный метод <b>.toString()</b></li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [{}, {}]
+        const objects = myArray.join(', ')
+        console.log(objects) 
+        // => ? ('[object Object], [object Object]')
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .reverse()</h2>
+    <ul>
+      <li>Перезаписывает элементы массива в обратном порядке</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3,4]
+        myArray.reverse()
+        console.log(myArray) // => [4,3,2,1]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .concat()</h2>
+    <ul>
+      <li>Добавляет элементы в массив, при этом не изменяя оригинальный</li>
+      <li>Вызов метода возвращает новый массив</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1, 2]
+        console.log(myArray.concat(3)) // => [1,2,3]
+        console.log(myArray) // => [1,2]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .concat()</h2>
+    <ul>
+      <li>Добавляет элементы в массив, при этом не изменяя оригинальный</li>
+      <li>Вызов метода возвращает новый массив</li>
+      <li>Также можно объединить два массива между собой</li>
+      <li>И на выходе получить третий</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2]
+        const nextArray = [3,4]
+        console.log(myArray.concat(nextArray)) // => [1,2,3,4]
+        console.log(myArray) // => [1,2]
+        console.log(nextArray) // => [3,4]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .concat()</h2>
+    <ul>
+      <li>Добавляет элементы в массив, при этом не изменяя оригинальный</li>
+      <li>Вызов метода возвращает новый массив</li>
+      <li>Также можно объединить два массива между собой</li>
+      <li>И на выходе получить третий</li>
+      <li>Аргументов можно передать сколько угодно</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2]
+        console.log(
+          myArray.concat([3,4], [5,6], [7,8])
+        ) // => [1,2,3,4,5,6,7,8]
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Array.from() — часть стандарта ES6</h2>
+    <ul>
+      <li>Позволяет создать новый массив из некоторых структур данных</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        // новый массив из строки
+        const myArray = Array.from('hello')
+        console.log(myArray) // => ['h', 'e', 'l', 'l', 'o']
+
+        // новый массив из Array-like объекта arguments
+        function createAnArray() {
+          return Array.from(arguments)
+        }
+        console.log(createAnArray('John', 'Tom', 'Sean')) 
+        // => ['John', 'Tom', 'Sean']
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Array.from() — часть стандарта ES6</h2>
+    <ul>
+      <li>Позволяет создать новый массив из некоторых структур данных</li>
+      <li>Вторым аргументом можно передать функцию итератор</li>
+      <li>Она будет работать аналогично .map()</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = Array.from('hello', function (x, i) {
+          return i + '_' + x
+        })
+        console.log(myArray) 
+        // => ['0_h', '1_e', '2_l', '3_l', '4_o']
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Array.isArray() — часть стандарта ES6</h2>
+    <ul>
+      <li>Позволяет проверить массив ли переданный аргумент</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myArray = [1,2,3]
+        console.log(Array.isArray(myArray)) // => true
+
+        const myObject = {}
+        console.log(Array.isArray(myObject)) // => false
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Array.of() — часть стандарта ES6</h2>
+    <ul>
+      <li>Позволяет создать массив из переданных аргументов</li>
+      <li>Работает похоже на конструктор, но более предсказуемо</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myCoolArray = Array.of(1)
+        console.log(myCoolArray) // => [1]
+
+        const myArray = Array.of(1, 2, 3)
+        console.log(myArray) // => [1,2,3]
+
+        const myBadArray = new Array(1)
+        console.log(myBadArray) // => [undefined]
+      </code>
+    </pre>
+  </section>
+  <section class="slide last">
+    <p class="thanx">Задавайте вопросы и напишите отзыв о лекции!</p>
+    <address>Антон Кузнецов</address>
+    <ul class="contacts">
+      <li><a href="mailto:isnifer@gmail.ru"><i class="fa fa-envelope-o" aria-hidden="true"></i>isnifer@gmail.ru</a></li>
+      <li><a href="skype:isnifer?call"><i class="fa fa-skype" aria-hidden="true"></i>isnifer</a></li>
+      <li><a href="https://fb.me/isnifee"><i class="fa fa-facebook" aria-hidden="true"></i>fb.me/isnifee</a></li>
+    </ul>
+  </section>
   <div class="progress"></div>
   <script src="shower/shower.min.js"></script>
   <script src="js/prism.js?v=2"></script>
