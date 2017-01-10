@@ -15,7 +15,6 @@
     <h1>Array, Set, Map</h1>
     <p>Антон Кузнецов, Tipsi</p>
   </header>
-
   <section class="slide" id="cover">
     <h2>Array, Set, Map</h2>
     <p>
@@ -33,7 +32,6 @@
       <li><a href="https://fb.me/isnifee"><i class="fa fa-facebook" aria-hidden="true"></i>fb.me/isnifee</a></li>
     </ul>
   </section>
-
   <section class="slide chapter">
     <h2>Array</h2>
   </section>
@@ -1279,6 +1277,466 @@
 
         const myBadArray = new Array(1)
         console.log(myBadArray) // => [undefined]
+      </code>
+    </pre>
+  </section>
+  <section class="slide chapter">
+    <h2>Set</h2>
+  </section>
+  <section class="slide">
+    <h2>Конструктор</h2>
+    <ul>
+      <li>Позволяет создать новый Set</li>
+      <li>Set - это коллекция уникальных значений</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const mySet = new Set()
+
+        // и по-прежнему это объект
+        typeof mySet // => 'object'
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .add()</h2>
+    <ul>
+      <li>Добавляет новый элемент в Set</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const mySet = new Set()
+        mySet.add(1)
+        mySet.add({a: 2})
+        console.log(mySet) // => Set {1, {a: 2}}
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .add()</h2>
+    <ul>
+      <li>Добавляет новый элемент в Set</li>
+      <li>Повторное добавление примитивов не производит изменений</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const mySet = new Set()
+        mySet.add(1)
+        mySet.add(2)
+        mySet.add([3])
+        mySet.add({d: 4})
+        mySet.add(1)
+        mySet.add(2)
+        console.log(mySet) // => Set {1, 2, [3], {d: 4}}
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .add()</h2>
+    <ul>
+      <li>Добавляет новый элемент в Set</li>
+      <li>Повторное добавление примитивов не производит изменений</li>
+      <li>Что нельзя сказать о сложных структурах данных</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const mySet = new Set()
+        mySet.add([3])
+        mySet.add({d: 4})
+
+        // однако сложные структуры добавляются вновь
+        mySet.add([3])
+        mySet.add({d: 4})
+        console.log(mySet)
+        // => Set {[3], {d: 4}, [3], {d: 4}}
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .add()</h2>
+    <ul>
+      <li>Добавляет новый элемент в Set</li>
+      <li>Повторное добавление примитивов не производит изменений</li>
+      <li>Что нельзя сказать о сложных структурах данных</li>
+      <li>Потому что внутри идет простая проверка на равенство</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        [3] === [3] // => false
+        {d: 4} === {d: 4} // => false
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .add()</h2>
+    <ul>
+      <li>Однако если передавать сложные структуры по ссылке, то все ок</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const mySet = new Set()
+        const myObject = {e: 5}
+        const myArray = [6]
+        mySet.add(myObject)
+        mySet.add(myArray)
+
+        mySet.add(myObject)
+        mySet.add(myArray)
+
+        mySet.add(myObject)
+        mySet.add(myArray)
+        console.log(mySet) // => Set {{e: 5}, [6]}
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .has()</h2>
+    <ul>
+      <li>Позволяет проверить, есть ли элемент внутри Set</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const mySet = new Set()
+        const myObject = {a: 3}
+        mySet.add(1)
+        mySet.add(2)
+        mySet.add(myObject)
+
+        console.log(mySet.has(1)) // => true
+        console.log(mySet.has(2)) // => true
+        console.log(mySet.has(myObject)) // => true
+        console.log(mySet.has(4)) // => false
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .delete()</h2>
+    <ul>
+      <li>Позволяет удалить элемент из Set (примитив или по ссылке)</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const mySet = new Set()
+        const myObject = {a: 3}
+        mySet.add(1)
+        mySet.add(2)
+        mySet.add(myObject)
+
+        console.log(mySet) // => Set {1, 2, {a: 3}}
+
+        console.log(mySet.delete({a: 3})) // => false
+        console.log(mySet) // => Set {1, 2, {a: 3}}
+
+        console.log(mySet.delete(myObject)) // => true
+        console.log(mySet) // => Set {1, 2}
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Свойство .size</h2>
+    <ul>
+      <li>Хранит количество элементов внутри Set, аналогично .length в Array</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const mySet = new Set()
+        mySet.add(1)
+        mySet.add(2)
+        mySet.add(3)
+        console.log(mySet.size) // 3
+
+        mySet.add(2)
+        mySet.add(3)
+        console.log(mySet.size) // 3
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .clear()</h2>
+    <ul>
+      <li>Очищает полностью Set</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const mySet = new Set()
+        mySet.add(1)
+        mySet.add(2)
+        mySet.add(3)
+        console.log(mySet.size) // 3
+
+        mySet.clear()
+        console.log(mySet.size) // 0
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .forEach() и аналоги</h2>
+    <ul>
+      <li>Позволяет обойти все элементы внутри Set</li>
+      <li>Работает аналогично .forEach в Array</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const mySet = new Set()
+        mySet.add(1)
+        mySet.add(2)
+        mySet.add(3)
+        mySet.forEach(function (x) {
+          console.log(x)
+        })
+        // => 1
+        // => 2
+        // => 3
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .forEach() и аналоги</h2>
+    <ul>
+      <li>Позволяет обойти все элементы внутри Set</li>
+      <li>Работает аналогично .forEach в Array</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const mySet = new Set()
+        mySet.add(1)
+        mySet.add(2)
+        mySet.add(3)
+
+        for (const x of mySet) {
+          console.log(x)
+        }
+        // => 1
+        // => 2
+        // => 3
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .forEach() и аналоги</h2>
+    <ul>
+      <li>Позволяет обойти все элементы внутри Set</li>
+      <li>Работает аналогично .forEach в Array</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const mySet = new Set()
+        mySet.add(1)
+        mySet.add(2)
+        mySet.add(3)
+
+        for (const x of mySet.keys()) {
+          console.log(x)
+        }
+        // => 1
+        // => 2
+        // => 3
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .forEach() и аналоги</h2>
+    <ul>
+      <li>Позволяет обойти все элементы внутри Set</li>
+      <li>Работает аналогично .forEach в Array</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const mySet = new Set()
+        mySet.add(1)
+        mySet.add(2)
+        mySet.add(3)
+
+        for (const x of mySet.values()) {
+          console.log(x)
+        }
+        // => 1
+        // => 2
+        // => 3
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .forEach() и аналоги</h2>
+    <ul>
+      <li>Позволяет обойти все элементы внутри Set</li>
+      <li>Работает аналогично .forEach в Array</li>
+      <li>Однако при использовании метода .entries() получим другой результат</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const mySet = new Set()
+        mySet.add(1)
+        mySet.add(2)
+        mySet.add(3)
+        for (const x of mySet.entries()) {
+          console.log(x)
+        }
+        // => [1, 1]
+        // => [2, 2]
+        // => [3, 3]
+      </code>
+    </pre>
+  </section>
+  <section class="slide chapter">
+    <h2>Map</h2>
+  </section>
+  <section class="slide">
+    <h2>Конструктор</h2>
+    <ul>
+      <li>Позволяет создать новый Map</li>
+      <li>Map очень похож на обычный объект</li>
+      <li>Но имеет ряд методов, которые для объектов приходится эмулировать</li>
+      <li>Методы Map будем рассматривать бок о бок с примерами для Object</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myMap = new Map()
+
+        // и по-прежнему это объект
+        typeof myMap // => 'object'
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .set()</h2>
+    <ul>
+      <li>Позволяет записать новый элемент в Map</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myMap = new Map()
+
+        // Заполним Map и Object свойствами:
+        const myStringKey = 'my super string'
+        const myObjectKey = {}
+        const myFunctionKey = function () {}
+
+        myMap.set(myStringKey, 'значение для строки')
+        myMap.set(myObjectKey, 'значение для объекта')
+        myMap.set(myFunctionKey, 'значение для функции')
+
+        console.log(myMap)
+        // => Map {"my super string" => "значение для строки", Object {} => "значение для объекта", function => "значение для функции"}
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .set(). Аналог в Object</h2>
+    <ul>
+      <li>Можем задавать только ключи ввиде строк</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myObject = {}
+        const myStringKey = 'my super string'
+
+        myObject[myStringKey] = 'значение для строки'
+        console.log(myObject)
+        // => {my super string: "значение для строки"}
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .get()</h2>
+    <ul>
+      <li>Позволяет получить элемент по ключу</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myMap = new Map()
+        const myObject = {}
+
+        myMap.set('myStringKey', 'my string value')
+        console.log(myMap.get('myStringKey'))
+        // => 'my string value'
+
+        myObject.myStringKey = 'my string value'
+        console.log(myObject.myStringKey)
+        // => 'my string value'
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Свойство .size</h2>
+    <ul>
+      <li>Хранит количество элементов внутри Map</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myMap = new Map()
+        const myObject = {}
+
+        myMap.set('key1', 1)
+        myMap.set('key2', 2)
+        console.log(myMap.size) // => 2
+
+        myObject.key1 = 1
+        myObject.key2 = 2
+        // для получения количества ключей в объекте
+        // надо проделать чуть больше манипуляций
+        console.log(Object.keys(myObject).length) // => 2
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .keys()</h2>
+    <ul>
+      <li>Позволяет получить список ключей в Map</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myMap = new Map()
+        const myObject = {}
+
+        myMap.set('key1', 'value1')
+        myMap.set('key2', 'value2')
+        console.log(myMap.keys())
+        // => MapIterator {"key1", "key2"}
+
+        myObject.key1 = 'value1'
+        myObject.key2 = 'value2'
+        console.log(Object.keys(myObject))
+        // => ['key1', 'key2']
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .has()</h2>
+    <ul>
+      <li>Позволяет узнать есть тот или иной элемент в Map по ключу</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myMap = new Map()
+
+        const myStringKey = 'my string key'
+        myMap.set(myStringKey, 'my string value')
+        console.log(myMap.has(myStringKey)) // true
+        console.log(myMap.has('anotherString')) // false
+      </code>
+    </pre>
+  </section>
+  <section class="slide">
+    <h2>Метод .clear()</h2>
+    <ul>
+      <li>Позволяет полностью очистить Map</li>
+    </ul>
+    <pre>
+      <code class="language-javascript line-numbers">
+        const myMap = new Map()
+        let myObject = {}
+        myMap.set('key', 'value')
+        myObject['key'] = 'value'
+
+        console.log(myMap) // => Map {"key" => "value"}
+        console.log(myObject) // => {key: 'value'}
+
+        myMap.clear()
+        myObject = {}
+
+        console.log(myMap) // => Map {}
+        console.log(myObject) // => {}
       </code>
     </pre>
   </section>
