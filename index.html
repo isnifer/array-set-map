@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="node_modules/shower-ribbon/styles/screen-4x3.css">
+  <link rel="stylesheet" href="shower/themes/ribbon/styles/screen-4x3.css">
   <link rel="stylesheet" href="css/prism.css">
   <link rel="stylesheet" href="css/prism-fix.css">
   <link rel="stylesheet" href="css/netology.css">
@@ -76,7 +76,7 @@
     <pre>
       <code class="language-javascript line-numbers">
         const myArray = new Array(1,2,3)
-        console.log(myArray) // => [1,2,3]    
+        console.log(myArray) // => [1,2,3]
       </code>
     </pre>
   </section>
@@ -91,7 +91,7 @@
     <pre>
       <code class="language-javascript line-numbers">
         const myArray = [1,2,3]
-        console.log(myArray) // => [1,2,3]  
+        console.log(myArray) // => [1,2,3]
       </code>
     </pre>
     <p>Поэтому про конструктор помните, но не создавайте новые массивы с помощью него.</p>
@@ -104,7 +104,7 @@
         console.log(myWrongArray) // => [undefined]
 
         const myOneMoreWrongArray = new Array(3)
-        console.log(myOneMoreWrongArray) 
+        console.log(myOneMoreWrongArray)
         // => [undefined, undefined, undefined]
       </code>
     </pre>
@@ -265,7 +265,7 @@
         ]
         myArray[0] = 'George'
         myArray[3] = 'Sean'
-        console.log(myArray) 
+        console.log(myArray)
         // => ['George', 'Paul', 'Tommy', 'Sean', 'Danny']
       </code>
     </pre>
@@ -337,7 +337,7 @@
 
         myArray[6] = 10
         console.log(myArray.length) // => 7
-        console.log(myArray) 
+        console.log(myArray)
         // => [1,2,3,undefined,undefined,undefined,10]
       </code>
     </pre>
@@ -384,9 +384,9 @@
         const result = []
 
         for (let i = 0; i < myArray.length; i++) {
-          // Проверяем совпадение элементов массивов 
+          // Проверяем совпадение элементов массивов
           if (myArrayTwo.indexOf(myArray[i]) !== -1) {
-            // Если индекс текущего элемента не равен -1, 
+            // Если индекс текущего элемента не равен -1,
             // мы отправим найденный элемент в новый массив
             result[result.length] = myArray[i]
           }
@@ -454,7 +454,7 @@
         console.log(myArray) // => [1,2,3,4]
 
         // но можно проще
-        myArray.push(5) 
+        myArray.push(5)
         console.log(myArray) // => [1,2,3,4,5]
       </code>
     </pre>
@@ -502,7 +502,7 @@
           'Paul', 'Tommy', 'Sean', 'Danny', 'Sean'
         ]
         console.log(myArray.pop()) // => 'Sean'
-        console.log(myArray) 
+        console.log(myArray)
         // => ['Paul', 'Tommy', 'Sean', 'Danny']
       </code>
     </pre>
@@ -552,8 +552,8 @@
     <pre>
       <code class="language-javascript line-numbers">
         const myArray = [1,2,3,4,5,6]
-        // в качестве первого аргумента 
-        // необходимо передать индекс элемента, 
+        // в качестве первого аргумента
+        // необходимо передать индекс элемента,
         // с которого надо удалить элементы
         console.log(myArray.splice(3)) // => [4,5,6]
         console.log(myArray) // => [1,2,3]
@@ -589,7 +589,7 @@
         console.log(
           myArray.splice(3, 2, 'John', 'Sean', 'Tommy')
         ) // => [4,5]
-        console.log(myArray) 
+        console.log(myArray)
         // => [1, 2, 3, 'John', 'Sean', 'Tommy', 6]
       </code>
     </pre>
@@ -609,7 +609,7 @@
         console.log(
           myArray.splice(3, 0, 'John', 'Sean', 'Tommy')
         ) // => []
-        console.log(myArray) 
+        console.log(myArray)
         // => [1, 2, 3, 'John', 'Sean', 'Tommy', 4, 5, 6]
       </code>
     </pre>
@@ -625,7 +625,7 @@
           'Paul', 'Tommy', 'Sean', 'Danny', 'Sean'
         ]
         const copyOfArray = myArray.slice()
-        console.log(copyOfArray) 
+        console.log(copyOfArray)
         // => ['Paul', 'Tommy', 'Sean', 'Danny', 'Sean']
       </code>
     </pre>
@@ -676,7 +676,7 @@
         // первый аргумент итератора - элемент массива
         myArray.forEach(function (element) {
           // в теле функции мы можем выполнять любые операции
-          
+
           // с каждым выполнением функции будем
           // отправлять новый элемент в нужный массив
           destinationArray.push(element * 2)
@@ -893,7 +893,7 @@
         const people = myArray.filter(function (man) {
           return man.age > 20
         })
-        console.log(people) 
+        console.log(people)
         // => [{name: 'Max', age: 40}, {name: 'Tom', age: 23}]
       </code>
     </pre>
@@ -953,7 +953,7 @@
           return obj
         })
 
-        console.log(nextArray) 
+        console.log(nextArray)
         // => [{el_0: 1}, {el_1: 2}, {el_2: 3}, {el_3: 4}]
         console.log(myArray) // [1,2,3,4]
       </code>
@@ -1016,14 +1016,14 @@
       <code class="language-javascript line-numbers">
         const myArray = [10, 20, 15, 40, 23]
         const founded = myArray.reduce(function (memo, el) {
-          // если число больше 15, то добавим его в массив 
+          // если число больше 15, то добавим его в массив
           // и вернем этот массив с нашим новым элементом
           if (el > 15) {
             memo.push(el)
             return memo
           }
           // если элемент не удовлетворяет нашим условиям,
-          // то просто вернем результат 
+          // то просто вернем результат
           // вычисления прошлой итерации
           return memo
         }, [])
@@ -1055,11 +1055,11 @@
           if (!memo && el > 15) {
             return el
           }
-          
+
           // иначе просто вернем результат выполнения
           // функции от предыдущей итерации
           return memo
-        }, undefined) 
+        }, undefined)
         // в случае, если мы ничего не найдем,
         // то должны вернуть undefined
         console.log(founded) // => 20
@@ -1077,11 +1077,11 @@
           if (!memo && el > <mark>50</mark>) {
             return el
           }
-          
+
           // иначе просто вернем результат выполнения
           // функции от предыдущей итерации
           return memo
-        }, undefined) 
+        }, undefined)
         // в случае, если мы ничего не найдем,
         // то должны вернуть undefined
         console.log(founded) // => <mark>undefined</mark>
@@ -1097,9 +1097,9 @@
       <code class="language-javascript line-numbers">
         const myArray = [10, 20, 15, 40, 23]
         const founded = myArray.reduce(function (memo, el) {
-          // будем прибавлять 
+          // будем прибавлять
           // к предыдущему значению текущее число
-          // и будем возвращать 
+          // и будем возвращать
           // в качестве результата выполнения функции
           return memo + el
         }, 0) // начнем все-таки отсчет с нуля
@@ -1143,7 +1143,7 @@
       <code class="language-javascript line-numbers">
         const myArray = [{}, {}]
         const objects = myArray.join(', ')
-        console.log(objects) 
+        console.log(objects)
         // => ? ('[object Object], [object Object]')
       </code>
     </pre>
@@ -1226,7 +1226,7 @@
         function createAnArray() {
           return Array.from(arguments)
         }
-        console.log(createAnArray('John', 'Tom', 'Sean')) 
+        console.log(createAnArray('John', 'Tom', 'Sean'))
         // => ['John', 'Tom', 'Sean']
       </code>
     </pre>
@@ -1243,7 +1243,7 @@
         const myArray = Array.from('hello', function (x, i) {
           return i + '_' + x
         })
-        console.log(myArray) 
+        console.log(myArray)
         // => ['0_h', '1_e', '2_l', '3_l', '4_o']
       </code>
     </pre>
